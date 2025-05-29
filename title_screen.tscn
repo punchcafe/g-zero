@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://cc4x1fjdv301f"]
+
+[ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://3dwater.gdshader" id="1_ig5kc"]
+[ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://ac0doca5.png" id="2_05l2w"]
+[ext_resource type="Script" uid="uid://ckfrwcigws8ls" path="res://earth.gd" id="3_hafda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a202f"]
+render_priority = 0
+shader = ExtResource("1_ig5kc")
+shader_parameter/time_speed = 0.0
+shader_parameter/surface_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 2.0
+shader_parameter/vertical_frequency = 2.0
+shader_parameter/size = 3.0
+shader_parameter/banding_bias = 0.6
+shader_parameter/wave_texture = ExtResource("2_05l2w")
+shader_parameter/noise_texture = ExtResource("2_05l2w")
+shader_parameter/wave_height = 0.0
+shader_parameter/texture_height = 0.0
+shader_parameter/color1 = Color(0.59, 0.761, 1, 1)
+shader_parameter/color2 = Color(0.274, 0.474, 0.98, 1)
+shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
+shader_parameter/color4 = Color(0, 0.267, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_noarx"]
+material = SubResource("ShaderMaterial_a202f")
+radius = 0.501
+height = 1.002
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
+shading_mode = 0
+albedo_color = Color(0.135519, 0.495675, 0.889054, 1)
+proximity_fade_distance = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0tk4"]
+material = SubResource("StandardMaterial3D_noarx")
+
+[sub_resource type="Environment" id="Environment_a202f"]
+background_mode = 1
+background_color = Color(0.321569, 0.678431, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_a0tk4"]
+size = Vector3(0.05, 0.05, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_r3fl7"]
+material = SubResource("StandardMaterial3D_a0tk4")
+radius = 0.1
+height = 0.2
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+mesh = SubResource("SphereMesh_noarx")
+script = ExtResource("3_hafda")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("SphereMesh_a0tk4")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.775793, -0.630987, 0, 0.630987, 0.775793, 0, 0, 0, 1, -0.236304, 0.151413, 0.349605)
+fov = 30.1
+near = 0.001
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a202f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.293356, 0.956003, 0, -0.956003, 0.293356, 0, 0, 0)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -921.0
+offset_top = -217.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 160
+text = "G0://ca.DET"
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.340537, 0.185451, -0.921761, 0.905555, 0.199099, 0.374607, 0.252993, -0.962272, -0.100135, -0.322756, 0.156522, -0.0591858)
+mesh = SubResource("PrismMesh_a0tk4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D2"]
+transform = Transform3D(1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 1.49012e-08, 2.23517e-08, -7.45058e-09, 1, 0.00918198, -0.031429, -0.00276962)
+visible = false
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 0.567186, -0.909237)
+mesh = SubResource("SphereMesh_r3fl7")
