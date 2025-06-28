@@ -1,0 +1,90 @@
+[gd_scene load_steps=11 format=3 uid="uid://dgeasogut2t8l"]
+
+[ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://title_screen/3dwater.gdshader" id="1_id76k"]
+[ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://title_screen/ac0doca5.png" id="2_djyae"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a202f"]
+render_priority = 0
+shader = ExtResource("1_id76k")
+shader_parameter/time_speed = 0.2
+shader_parameter/surface_speed = 0.2
+shader_parameter/spin = 0.1
+shader_parameter/brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 2.0
+shader_parameter/vertical_frequency = 2.0
+shader_parameter/size = 3.0
+shader_parameter/banding_bias = 0.6
+shader_parameter/wave_texture = ExtResource("2_djyae")
+shader_parameter/noise_texture = ExtResource("2_djyae")
+shader_parameter/wave_height = 0.0
+shader_parameter/texture_height = 0.0
+shader_parameter/color1 = Color(0.59, 0.761, 1, 1)
+shader_parameter/color2 = Color(0.274, 0.474, 0.98, 1)
+shader_parameter/color3 = Color(0.059, 0.389, 0.85, 1)
+shader_parameter/color4 = Color(0, 0.267, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_noarx"]
+material = SubResource("ShaderMaterial_a202f")
+radius = 0.501
+height = 1.002
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
+shading_mode = 0
+albedo_color = Color(0.135519, 0.495675, 0.889054, 1)
+proximity_fade_distance = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_a0tk4"]
+material = SubResource("StandardMaterial3D_noarx")
+
+[sub_resource type="Environment" id="Environment_a202f"]
+background_mode = 1
+background_color = Color(0.321569, 0.678431, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_r3fl7"]
+material = SubResource("StandardMaterial3D_a0tk4")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="PrismMesh" id="PrismMesh_a0tk4"]
+size = Vector3(0.05, 0.05, 0.01)
+
+[node name="TitleScreen" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("SphereMesh_noarx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("SphereMesh_a0tk4")
+skeleton = NodePath("../..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a202f")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.293356, 0.956003, 0, -0.956003, 0.293356, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 0.567186, -0.909237)
+mesh = SubResource("SphereMesh_r3fl7")
+
+[node name="gamma-zero" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6732, 0, 0)
+
+[node name="mesh" type="MeshInstance3D" parent="gamma-zero"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200986, 0, 0)
+mesh = SubResource("PrismMesh_a0tk4")
+skeleton = NodePath("../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="gamma-zero"]
+transform = Transform3D(1, -2.98023e-08, -2.23517e-08, 2.98023e-08, 1, 7.45058e-09, 2.23517e-08, -7.45058e-09, 1, 0.00918198, -0.031429, -0.00276962)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="gamma-zero"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.865494, 0, 0)
+fov = 40.6
+near = 0.001
