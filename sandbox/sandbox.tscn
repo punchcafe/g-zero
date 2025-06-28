@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgeasogut2t8l"]
+[gd_scene load_steps=12 format=3 uid="uid://dgeasogut2t8l"]
 
 [ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://title_screen/3dwater.gdshader" id="1_id76k"]
 [ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://title_screen/ac0doca5.png" id="2_djyae"]
+[ext_resource type="Script" uid="uid://cjbiabifsveij" path="res://sandbox/gamma_zero.gd" id="3_id76k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a202f"]
 render_priority = 0
@@ -52,7 +53,7 @@ height = 0.2
 [sub_resource type="PrismMesh" id="PrismMesh_a0tk4"]
 size = Vector3(0.05, 0.05, 0.01)
 
-[node name="TitleScreen" type="Node3D"]
+[node name="Sandbox" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
@@ -73,10 +74,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 0.567186, -0.90923
 mesh = SubResource("SphereMesh_r3fl7")
 
 [node name="gamma-zero" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6732, 0, 0)
+script = ExtResource("3_id76k")
+metadata/_custom_type_script = "uid://cjbiabifsveij"
 
 [node name="mesh" type="MeshInstance3D" parent="gamma-zero"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0200986, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0200986, 0, 0)
 mesh = SubResource("PrismMesh_a0tk4")
 skeleton = NodePath("../..")
 
@@ -84,7 +86,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, -2.98023e-08, -2.23517e-08, 2.98023e-08, 1, 7.45058e-09, 2.23517e-08, -7.45058e-09, 1, 0.00918198, -0.031429, -0.00276962)
 visible = false
 
-[node name="Camera3D" type="Camera3D" parent="gamma-zero"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.865494, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.0107336, 0, 0.999942, 0, 1, 0, -0.999942, 0, 0.0107336, 4.93969, 0, 0)
 fov = 40.6
 near = 0.001
