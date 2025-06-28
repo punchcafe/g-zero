@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://cc4x1fjdv301f"]
 
-[ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://3dwater.gdshader" id="1_ig5kc"]
-[ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://ac0doca5.png" id="2_05l2w"]
-[ext_resource type="Script" uid="uid://ckfrwcigws8ls" path="res://earth.gd" id="3_hafda"]
+[ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://title_screen/3dwater.gdshader" id="1_ig5kc"]
+[ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://title_screen/ac0doca5.png" id="2_05l2w"]
+[ext_resource type="Script" uid="uid://ckfrwcigws8ls" path="res://title_screen/earth.gd" id="3_hafda"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a202f"]
 render_priority = 0
