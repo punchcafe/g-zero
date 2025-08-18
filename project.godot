@@ -18,3 +18,7 @@ config/icon="uid://d2sroupv74gxd"
 [editor]
 
 movie_writer/movie_file="C:/Users/punchcafe/Projects/g-zero/sample.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
