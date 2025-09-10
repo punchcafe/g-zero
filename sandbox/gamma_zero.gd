@@ -7,7 +7,7 @@ var _spherical_position := SphericalCoordinate.new()
 
 func _physics_process(delta: float) -> void:
 	_spherical_position.radius = 1.8
-	_spherical_position.fi += 0.05
+	_spherical_position.fi += 0.01
 	# TODO: need to rethink how to map these to which axis.
 	#_spherical_position.theta += 0.005
 	

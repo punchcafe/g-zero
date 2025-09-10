@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://title_screen/3dwater.gdshader" id="1_ig5kc"]
 [ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://title_screen/ac0doca5.png" id="2_05l2w"]
 [ext_resource type="Script" uid="uid://ckfrwcigws8ls" path="res://title_screen/earth.gd" id="3_hafda"]
+[ext_resource type="PackedScene" uid="uid://m6xdcrav1dcs" path="res://mech/mech.tscn" id="4_vbjqi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a202f"]
 render_priority = 0
@@ -41,9 +42,6 @@ material = SubResource("StandardMaterial3D_noarx")
 [sub_resource type="Environment" id="Environment_a202f"]
 background_mode = 1
 background_color = Color(0.321569, 0.678431, 1, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_a0tk4"]
-size = Vector3(0.05, 0.05, 0.01)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
 shading_mode = 0
@@ -99,12 +97,14 @@ theme_override_font_sizes/normal_font_size = 160
 text = "G0://ca.DET"
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.340537, 0.185451, -0.921761, 0.905555, 0.199099, 0.374607, 0.252993, -0.962272, -0.100135, -0.322756, 0.156522, -0.0591858)
-mesh = SubResource("PrismMesh_a0tk4")
+transform = Transform3D(0.154285, -0.327214, -0.93227, 0.966148, 0.247432, 0.073046, 0.206772, -0.91198, 0.354313, -0.322756, 0.156522, -0.0591858)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D2"]
 transform = Transform3D(1, -2.98023e-08, 1.49012e-08, 2.98023e-08, 1, 1.49012e-08, 2.23517e-08, -7.45058e-09, 1, 0.00918198, -0.031429, -0.00276962)
 visible = false
+
+[node name="Mech" parent="MeshInstance3D2" instance=ExtResource("4_vbjqi")]
+transform = Transform3D(0.0199729, 0.000945438, -0.000436891, -0.000891068, 0.0198552, 0.00223098, 0.00053919, -0.00220849, 0.0198704, 0.00516851, -0.0478421, -0.00398207)
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 0.567186, -0.909237)
