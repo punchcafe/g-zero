@@ -12,12 +12,16 @@ config_version=5
 
 config/name="g-zero"
 run/main_scene="uid://cc4x1fjdv301f"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="uid://d2sroupv74gxd"
 
 [editor]
 
 movie_writer/movie_file="C:/Users/punchcafe/Projects/g-zero/sample.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 
 [input]
 
@@ -66,6 +70,3 @@ fire_bullet={
 "events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":10,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")

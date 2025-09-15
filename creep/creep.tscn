@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://doceiyy0ekg3a"]
+
+[ext_resource type="Script" uid="uid://c4eqh4atdgjev" path="res://creep/creep.gd" id="1_l0b1j"]
+[ext_resource type="PackedScene" uid="uid://ca8p7xxpvdbco" path="res://creep/mob.glb" id="1_sxhe2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0b1j"]
+radius = 1.0
+height = 3.5
+
+[node name="Creep" type="Node3D"]
+script = ExtResource("1_l0b1j")
+
+[node name="mob" parent="." instance=ExtResource("1_sxhe2")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.34341717)
+shape = SubResource("CapsuleShape3D_l0b1j")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

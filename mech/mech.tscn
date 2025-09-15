@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://m6xdcrav1dcs"]
+[gd_scene load_steps=14 format=3 uid="uid://m6xdcrav1dcs"]
 
 [ext_resource type="Material" uid="uid://bqvlvv8n5wj06" path="res://metallic.tres" id="1_ratwy"]
 [ext_resource type="Script" uid="uid://d2avehjuhbril" path="res://mech/mech.gd" id="1_yc0df"]
 [ext_resource type="Material" uid="uid://gog2odywn6wv" path="res://blue_metal.tres" id="2_yc0df"]
+[ext_resource type="PackedScene" uid="uid://doceiyy0ekg3a" path="res://creep/creep.tscn" id="4_wmpuk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_wmpuk"]
 material = ExtResource("1_ratwy")
@@ -99,3 +100,6 @@ environment = SubResource("Environment_yc0df")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.942868, 0.333165, 0, 0.051975, -0.147091, 0.987756, 0.329086, -0.931324, -0.156004, 0, 23.4859, 0)
+
+[node name="Creep" parent="." instance=ExtResource("4_wmpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.242176, 0, -10.011461)
