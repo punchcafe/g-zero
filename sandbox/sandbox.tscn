@@ -74,19 +74,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.323181, 0.567186, -0.90923
 mesh = SubResource("SphereMesh_r3fl7")
 
 [node name="gamma-zero" type="Node3D" parent="."]
-transform = Transform3D(0.48855013, 0.4661406, -0.7375851, -0.70611316, 0.7078057, -0.020383606, 0.51256526, 0.53077674, 0.6749467, 0.87120736, -0.84598684, 0.8712908)
+transform = Transform3D(1.0000001, 0, 0, 0, 0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0)
 script = ExtResource("3_id76k")
 metadata/_custom_type_script = "uid://cjbiabifsveij"
 
 [node name="mesh" type="MeshInstance3D" parent="gamma-zero"]
-transform = Transform3D(-0.0036405027, -0.047041506, 0.9988861, 0.10379234, 0.99348015, 0.047165066, -0.9945923, 0.10384822, 0.0012653768, -0.020098329, 0.018612236, 5.9604645e-08)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 0.9999998, 0, -1, -4.371138e-08, -0.020098329, 0.018612236, 5.9604645e-08)
 mesh = SubResource("PrismMesh_a0tk4")
 skeleton = NodePath("../..")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="gamma-zero"]
 transform = Transform3D(1, -2.98023e-08, -2.23517e-08, 2.98023e-08, 1, 7.45058e-09, 2.23517e-08, -7.45058e-09, 1, 0.00918198, -0.031429, -0.00276962)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.010733604, 0, 0.9999424, 0, 1, 0, -0.9999424, 0, 0.010733605, 6.598137, 0, 0)
+[node name="Camera3D" type="Camera3D" parent="gamma-zero"]
+transform = Transform3D(0.9999999, 0, 0, 0, -4.3711385e-08, 1.0000001, 0, -0.9999999, -4.3711378e-08, -0.036278006, 1.6256406, -0.12463735)
 fov = 40.6
 near = 0.001
