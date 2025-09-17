@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://3ht3koh73hew"]
+
+[ext_resource type="Script" uid="uid://d2avehjuhbril" path="res://mech/mech.gd" id="1_l7lm3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_wmpuk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5hb5k"]
+size = Vector3(0.2, 0.2, 2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_yc0df"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3fitu"]
+
+[node name="GZero" type="CharacterBody3D"]
+script = ExtResource("1_l7lm3")
+
+[node name="Torso" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.529076, 0)
+mesh = SubResource("BoxMesh_wmpuk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.671719, 0.857906, 0.687889)
+mesh = SubResource("BoxMesh_5hb5k")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Torso"]
+transform = Transform3D(1, 0, 0, 0, -0.0185867, -0.999827, 0, 0.999827, -0.0185867, 0, 0.52341, 1.01149)
+mesh = SubResource("PrismMesh_yc0df")
+
+[node name="Legs" type="Node3D" parent="."]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Legs"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.524836, 0)
+mesh = SubResource("BoxMesh_3fitu")
+skeleton = NodePath("../../Torso")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Legs"]
+transform = Transform3D(-0.999971, 0.00760813, -0.000141434, 0, -0.0185867, -0.999827, -0.00760945, -0.999798, 0.0185861, 0, -0.503592, -1.05344)
+mesh = SubResource("PrismMesh_yc0df")
+skeleton = NodePath("../../Torso")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 22.892149, 0)

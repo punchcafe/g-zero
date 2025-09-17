@@ -1,36 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://m6xdcrav1dcs"]
+[gd_scene load_steps=4 format=3 uid="uid://m6xdcrav1dcs"]
 
-[ext_resource type="Material" uid="uid://bqvlvv8n5wj06" path="res://metallic.tres" id="1_ratwy"]
-[ext_resource type="Script" uid="uid://d2avehjuhbril" path="res://mech/mech.gd" id="1_yc0df"]
-[ext_resource type="Material" uid="uid://gog2odywn6wv" path="res://blue_metal.tres" id="2_yc0df"]
+[ext_resource type="PackedScene" uid="uid://3ht3koh73hew" path="res://mech/g_zero.tscn" id="1_ratwy"]
 [ext_resource type="PackedScene" uid="uid://doceiyy0ekg3a" path="res://creep/creep.tscn" id="4_wmpuk"]
-
-[sub_resource type="SphereMesh" id="SphereMesh_wmpuk"]
-material = ExtResource("1_ratwy")
-radius = 0.2
-height = 0.4
-
-[sub_resource type="BoxMesh" id="BoxMesh_sabuu"]
-material = ExtResource("2_yc0df")
-size = Vector3(0.1, 2, 1)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_5hb5k"]
-material = ExtResource("1_ratwy")
-top_radius = 0.3
-bottom_radius = 0.3
-height = 0.7
-
-[sub_resource type="PrismMesh" id="PrismMesh_ratwy"]
-material = ExtResource("2_yc0df")
-
-[sub_resource type="BoxMesh" id="BoxMesh_wmpuk"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_5hb5k"]
-size = Vector3(0.2, 0.2, 2)
-
-[sub_resource type="PrismMesh" id="PrismMesh_yc0df"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_3fitu"]
 
 [sub_resource type="Environment" id="Environment_yc0df"]
 background_mode = 1
@@ -40,66 +11,13 @@ ambient_light_energy = 3.0
 
 [node name="Node3D" type="Node3D"]
 
-[node name="GZero" type="CharacterBody3D" parent="."]
-script = ExtResource("1_yc0df")
+[node name="GZero" parent="." instance=ExtResource("1_ratwy")]
 
-[node name="Mech" type="Node3D" parent="GZero"]
-visible = false
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GZero/Mech"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0142609, 2.91344, 0)
-mesh = SubResource("SphereMesh_wmpuk")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="GZero/Mech"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.508264, 0.833866, 0)
-mesh = SubResource("BoxMesh_sabuu")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GZero/Mech"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.521813, 0.833866, 0)
-mesh = SubResource("BoxMesh_sabuu")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="GZero/Mech"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1.40497, 0)
-mesh = SubResource("CylinderMesh_5hb5k")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="GZero/Mech"]
-transform = Transform3D(-0.999359, 0.0357891, 0, -0.0357891, -0.999359, 0, 0, 0, 1, 0, 2.08347, 0)
-mesh = SubResource("PrismMesh_ratwy")
-
-[node name="Torso" type="Node3D" parent="GZero"]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="GZero/Torso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.529076, 0)
-mesh = SubResource("BoxMesh_wmpuk")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="GZero/Torso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.671719, 0.857906, 0.687889)
-mesh = SubResource("BoxMesh_5hb5k")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GZero/Torso"]
-transform = Transform3D(1, 0, 0, 0, -0.0185867, -0.999827, 0, 0.999827, -0.0185867, 0, 0.52341, 1.01149)
-mesh = SubResource("PrismMesh_yc0df")
-
-[node name="Legs" type="Node3D" parent="GZero"]
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="GZero/Legs"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.524836, 0)
-mesh = SubResource("BoxMesh_3fitu")
-skeleton = NodePath("../../Torso")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="GZero/Legs"]
-transform = Transform3D(-0.999971, 0.00760813, -0.000141434, 0, -0.0185867, -0.999827, -0.00760945, -0.999798, 0.0185861, 0, -0.503592, -1.05344)
-mesh = SubResource("PrismMesh_yc0df")
-skeleton = NodePath("../../Torso")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.0653509, 0.997862, 0, -0.997862, -0.0653509, 0, 31.7308, -0.277527)
+[node name="Creep" parent="." instance=ExtResource("4_wmpuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.242176, 0, -10.011461)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yc0df")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.942868, 0.333165, 0, 0.051975, -0.147091, 0.987756, 0.329086, -0.931324, -0.156004, 0, 23.4859, 0)
-
-[node name="Creep" parent="." instance=ExtResource("4_wmpuk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.242176, 0, -10.011461)
+transform = Transform3D(0.9428685, 0.3331653, 1.7463968e-08, 0.051975027, -0.14709106, 0.9877565, 0.32908615, -0.93132436, -0.15600379, 0, 23.4859, 0)
