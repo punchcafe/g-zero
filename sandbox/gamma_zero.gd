@@ -3,15 +3,19 @@ class_name GammaZero
 
 # TODO: make a custom Icon for fun
 
-var _spherical_position := SphericalCoordinate.new()
-
-func _physics_process(delta: float) -> void:
-	_spherical_position.radius = 1.8
-	_spherical_position.fi += 0.01
-	# TODO: need to rethink how to map these to which axis.
-	#_spherical_position.theta += 0.005
+var _vector := SphereSurfaceVector.new()
 	
 
+func _physics_process(delta: float) -> void:
+	var translation := Input.get_vector("legs_left", "legs_right", "legs_up", "legs_down")
+	_vector = _vector.translate(translation * 0.2)
+	var polar_axis := Vector3.UP.rotated(Vector3(1,0,0), _vector._coordinate.theta)
+	var other_axis := Vector3(1,0,0).rotated(Vector3(0,1,0), _vector._coordinate.fi)
+	self.position = _vector.cartesian_position()
+	self.rotation = Vector3(0,0,0)
+	self.rotate(polar_axis, _vector._coordinate.fi)
+	self.rotate(other_axis, _vector._coordinate.theta)
+
 func _process(delta) -> void:
-	self.position = _spherical_position.to_cartesian()
+	pass
 	#$mesh.rotation = Vector3(_spherical_position.theta, _spherical_position.fi, 0)
