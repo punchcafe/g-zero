@@ -23,6 +23,9 @@ func cartesian_position() -> Vector3:
 
 func _circumference() -> float:
 	return 2.0 * PI * _coordinate.radius
+	
+func _rotation() -> Vector3:
+	return Vector3(0, _coordinate.fi, -1 * _coordinate.theta)
 
 # returns the radius of the ring slice at the given theta.
 func _polar_circumference() -> float:
