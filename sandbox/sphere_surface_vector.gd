@@ -12,8 +12,8 @@ func translate(movement: Vector2) -> SphereSurfaceVector:
 	var fi_change := movement.x / _polar_circumference()
 	var out := SphereSurfaceVector.new()
 	out._coordinate = SphericalCoordinate.new()
-	out._coordinate.theta = _coordinate.theta + theta_change
-	out._coordinate.fi = _coordinate.fi + fi_change
+	out._coordinate.theta = fmod(_coordinate.theta + theta_change, PI)
+	out._coordinate.fi = fmod(_coordinate.fi + fi_change, PI)
 	out._coordinate.radius = _coordinate.radius
 	return out
 	
