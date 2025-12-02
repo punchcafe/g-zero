@@ -4,17 +4,25 @@ class_name GammaZero
 # TODO: make a custom Icon for fun
 
 var _vector := SphereSurfaceVector.new()
+var _plane_velocity := Vector2(0.0,0.0)
+
 	
 
 func _physics_process(delta: float) -> void:
-	var translation := Input.get_vector("legs_left", "legs_right", "legs_up", "legs_down")
-	if translation.length() < 0.05:
+	var legs_input := Input.get_vector("legs_left", "legs_right", "legs_up", "legs_down")
+	var camera_input := Input.get_vector("torso_left", "torso_right", "torso_up", "torso_down")
+	$Camera3D.rotation = Vector3($Camera3D.rotation.x, camera_input.angle() + PI/2, $Camera3D.rotation.z)
+	_plane_velocity = legs_input.rotated(-1.0 * camera_input.angle())
+	if _plane_velocity.length() < 0.05: 
 		return
-	_vector = _vector.translate(translation * 0.2)	
+	_vector = _vector.translate(_plane_velocity * 0.2)	
 	self.position = _vector.cartesian_position()
 	
+	# Required to rotate the craft tangential to the sphere surface
 	self.rotation = _vector._rotation()
-	$mesh.rotation = Vector3(PI/2, (-1 * translation.angle()) + PI, 0)
+	# Rotate the craft through the y axis so that it aligns with it's velocity
+	$mesh.rotation = Vector3($mesh.rotation.x, -1 * _plane_velocity.angle(), $mesh.rotation.z)
+	
 
 func _process(delta) -> void:
 	pass

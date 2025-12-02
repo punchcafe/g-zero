@@ -92,8 +92,8 @@ offset_left = -921.0
 offset_top = -217.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 160
 theme_override_font_sizes/mono_font_size = 20
+theme_override_font_sizes/normal_font_size = 160
 text = "G0://ca.DET"
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
