@@ -9,3 +9,4 @@ func _physics_process(delta: float) -> void:
 	_vector = _vector.translate(Vector2(0.1, 0.1) * 0.2)	
 	self.position = _vector.cartesian_position()
 	self.rotation = _vector._rotation()
+	

@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgeasogut2t8l"]
+[gd_scene load_steps=21 format=3 uid="uid://dgeasogut2t8l"]
 
 [ext_resource type="Shader" uid="uid://bilbxk4ljnthw" path="res://title_screen/3dwater.gdshader" id="1_id76k"]
 [ext_resource type="Texture2D" uid="uid://b64faup8mjg3o" path="res://title_screen/ac0doca5.png" id="2_djyae"]
 [ext_resource type="Script" uid="uid://cjbiabifsveij" path="res://sandbox/gamma_zero.gd" id="3_id76k"]
-[ext_resource type="Texture2D" uid="uid://i6rt3gakc6e2" path="res://earth_texture.jpeg" id="3_nikk6"]
+[ext_resource type="Texture2D" uid="uid://m5j0w2gijhiw" path="res://earth_texture.png" id="3_nikk6"]
 [ext_resource type="PackedScene" uid="uid://ca8p7xxpvdbco" path="res://creep/mob.glb" id="4_sk0q6"]
 [ext_resource type="Script" uid="uid://b5ju5f0wgmksb" path="res://creep/mob.gd" id="5_huv2n"]
 [ext_resource type="Script" uid="uid://wbsrqogf6rfg" path="res://sandbox/global_camera.gd" id="6_huv2n"]
@@ -35,13 +35,28 @@ radius = 0.501
 height = 1.002
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 shading_mode = 0
-albedo_color = Color(1, 1, 1, 0)
+albedo_color = Color(0.8797546, 0.8797546, 0.8797546, 0.84705883)
 albedo_texture = ExtResource("3_nikk6")
 proximity_fade_distance = 0.01
 
 [sub_resource type="SphereMesh" id="SphereMesh_a0tk4"]
 material = SubResource("StandardMaterial3D_noarx")
+radius = 0.506
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1kmj"]
+albedo_color = Color(0.1882353, 0.3137255, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_traw7"]
+material = SubResource("StandardMaterial3D_i1kmj")
+
+[sub_resource type="FogMaterial" id="FogMaterial_nikk6"]
+albedo = Color(0.21960784, 0.7921569, 1, 1)
+emission = Color(1.347661e-06, 0.6423656, 0.6428599, 1)
+edge_fade = 0.12311448
 
 [sub_resource type="Environment" id="Environment_a202f"]
 background_mode = 1
@@ -102,6 +117,14 @@ mesh = SubResource("SphereMesh_noarx")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D2"]
 mesh = SubResource("SphereMesh_a0tk4")
 skeleton = NodePath("../..")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D2"]
+mesh = SubResource("SphereMesh_traw7")
+
+[node name="FogVolume" type="FogVolume" parent="MeshInstance3D2"]
+size = Vector3(1.2, 1.2, 1.2)
+shape = 0
+material = SubResource("FogMaterial_nikk6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_a202f")
