@@ -37,3 +37,82 @@ func test_to_cartesian():
 		subject.theta = case.theta
 		subject.radius = case.radius
 		assert_almost_eq(case.expected, subject.to_cartesian(), Vector3(0.01, 0.01, 0.01))
+
+func test_add():
+	var cases := [\
+	# RADIUS cases
+	
+	# TODO: Still a few open questions for this as to how they should interact, 
+	# and what happens when something goes negative.
+	# For now, a few simple cases of simple addition / subtraction
+	
+		{\
+		"lhs": SphericalCoordinate.of(1.5, 0.0, 0.0),\
+		"rhs": SphericalCoordinate.of(3.0, 0.0, 0.0),\
+		"expected": SphericalCoordinate.of(4.5, 0, 0)\
+		},\
+		{\
+		"lhs": SphericalCoordinate.of(-1.5, 0.0, 0.0),\
+		"rhs": SphericalCoordinate.of(3.0, 0.0, 0.0),\
+		"expected": SphericalCoordinate.of(1.5, 0, 0)\
+		},\
+	
+	# THETA cases
+	#
+	# Wrapping over PI -> -PI
+		{\
+		"lhs": SphericalCoordinate.of(0, PI - 0.1, 0.0),\
+		"rhs": SphericalCoordinate.of(0, 0.2, 0.0),\
+		"expected": SphericalCoordinate.of(0, 0.1 - PI, 0.0)\
+		},\
+	# Wrapping over -PI -> PI
+		{\
+		"lhs": SphericalCoordinate.of(0, -PI + 0.1, 0.0),\
+		"rhs": SphericalCoordinate.of(0, -0.2, 0.0),\
+		"expected": SphericalCoordinate.of(0, PI - 0.1, 0.0)\
+		},\
+	# Simple Addition
+		{\
+		"lhs": SphericalCoordinate.of(0, 1.0, 0.0),\
+		"rhs": SphericalCoordinate.of(0, 1.0, 0.0),\
+		"expected": SphericalCoordinate.of(0, 2.0, 0.0)\
+		},\
+	# Simple Subtraction
+		{\
+		"lhs": SphericalCoordinate.of(0, 1.0, 0.0),\
+		"rhs": SphericalCoordinate.of(0, -0.5, 0.0),\
+		"expected": SphericalCoordinate.of(0, 0.5, 0.0)\
+		},\
+	# FI cases
+	#
+	# Wrapping over PI -> -PI
+		{\
+		"lhs": SphericalCoordinate.of(0, 0.0, PI - 0.1),\
+		"rhs": SphericalCoordinate.of(0, 0.0, 0.2),\
+		"expected": SphericalCoordinate.of(0, 0.0, 0.1 - PI)\
+		},\
+	# Wrapping over -PI -> PI
+		{\
+		"lhs": SphericalCoordinate.of(0, 0.0, -PI + 0.1),\
+		"rhs": SphericalCoordinate.of(0, 0.0, -0.2),\
+		"expected": SphericalCoordinate.of(0, 0.0, PI - 0.1)\
+		},\
+	# Simple Addition
+		{\
+		"lhs": SphericalCoordinate.of(0, 0.0, 1.0),\
+		"rhs": SphericalCoordinate.of(0, 0.0, 1.0),\
+		"expected": SphericalCoordinate.of(0, 0.0, 2.0)\
+		},\
+	# Simple Subtraction
+		{\
+		"lhs": SphericalCoordinate.of(0, 0.0, 1.0),\
+		"rhs": SphericalCoordinate.of(0, 0.0, -0.5),\
+		"expected": SphericalCoordinate.of(0, 0.0, 0.5)\
+		},\
+	]
+	
+	for case in cases:
+		var result = case.lhs.add(case.rhs)
+		assert_almost_eq(case.expected.fi, result.fi, 0.01)
+		assert_almost_eq(case.expected.theta, result.theta, 0.01)
+		assert_almost_eq(case.expected.radius, result.radius, 0.01)

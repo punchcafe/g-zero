@@ -14,6 +14,7 @@ func _physics_process(delta: float) -> void:
 	$Camera3D.rotation = Vector3($Camera3D.rotation.x, camera_input.angle() + PI/2, $Camera3D.rotation.z)
 	_plane_velocity = legs_input.rotated(-1.0 * camera_input.angle())
 	if _plane_velocity.length() < 0.05: 
+		# Act as though no input
 		return
 	_vector = _vector.translate(_plane_velocity * 0.2)	
 	self.position = _vector.cartesian_position()

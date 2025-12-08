@@ -8,13 +8,13 @@ func _init() -> void:
 	_coordinate.radius = 1.8
 
 func translate(movement: Vector2) -> SphereSurfaceVector:
-	var theta_change := movement.y / _circumference()
-	var fi_change := movement.x / _polar_circumference()
+	var translation = SphericalCoordinate.new()
+	translation.theta = movement.y / _circumference()
+	translation.fi = movement.x / _polar_circumference()
+	
+	var result_vector := _coordinate.add(translation)
 	var out := SphereSurfaceVector.new()
-	out._coordinate = SphericalCoordinate.new()
-	out._coordinate.theta = fmod(_coordinate.theta + theta_change, PI)
-	out._coordinate.fi = fmod(_coordinate.fi + fi_change, PI)
-	out._coordinate.radius = _coordinate.radius
+	out._coordinate = result_vector
 	return out
 	
 func cartesian_position() -> Vector3:
